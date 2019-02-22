@@ -1,0 +1,25 @@
+<% include ./partials/header %>
+<link  rel="stylesheet" type="text/css" href="/stylesheets/form.css">
+
+    <div class="row justify-content-center">
+        <div style="width: 50%; margin: 0 auto;">
+            <div class="alert alert-primary" role="alert">
+                <h1 style="text-align: center">Login</h1>
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="username" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Login</button>
+                    </div>
+                </form>
+                <a class="btn btn-outline-danger" href="/pets"><i class="fas fa-chevron-left"></i> Back</a>
+            </div>
+        </div>
+    </div>
+
+<% include ./partials/footer %>
+

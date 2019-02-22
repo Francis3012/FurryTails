@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+<link  rel="stylesheet" type="text/css" href="/stylesheets/show.css">
+
+    <div class="spacer">
+        <div class="card text-white bg-dark">
+            <img class="show" src="<%= pet.image %>">
+            <div class="card-body">
+                <h4><a><%=pet.name%></a></h4>
+                <p><%= pet.description %></p>
+                <p><em>Submitted By <%= pet.author.username %></em></p>
+                <div class="d-flex justify-content-between">
+                    <% if(currentUser && pet.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-info" href="/pets/<%= pet._id %>/edit">Edit Pet</a>
+                    <% } %>
+                    <div>
+                        <a class="btn btn-success" href="/pets/<%= pet._id %>/comments/new">Add New Comment</a>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <hr>
+        <% pet.comments.forEach(function(comment){ %>
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <h6><%= comment.author.username %></h6>
+                    <p class="float-right"><em>10 days ago</em></p> 
+                    <p><%= comment.text %></p> 
+                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                        <div class="d-flex justify-content-between"></div>
+                            <form style="display: inline" class="pull-right" action="/pets/<%=pet._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                <a href="/pets/<%=pet._id%>/comments/<%=comment._id%>/edit" class="btn btn-sm btn-info">Edit</a>
+                            </form>
+                        </div>
+                    <% } %> 
+                </div> 
+            </div>
+        <% }) %>
+    </div>
+
+<% include ../partials/footer %>
